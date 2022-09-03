@@ -31,11 +31,15 @@ Connect to your `mySql database` using `sequelize`
   - TABLE_OWNER={USERNAME}
   - TABLE_PASSWORD={PASSWORD}
  ```
+- Create a .env file in your root folder and fill out the following.
+
+ ```bash
+  - YOUR_ENDPOINT_URL={YOUR_ENDPOINT}:3000
+ ```
 
 
 
 ### Server side
-
 ```bash
   cd service
   npm install
@@ -59,4 +63,6 @@ Connect to your `mySql database` using `sequelize`
 **Client:** flutter, dart, 
 
 **Server:** Node, Express, mySql, Sequelize, Rest API
+
+
 
