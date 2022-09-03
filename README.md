@@ -16,7 +16,7 @@ Your personalised Note taking mobile app.
 
 Clone the project
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/nibu-b-john/Note_Taking_App.git
 ```
 
 Connect to your `mySql database` using `sequelize`
