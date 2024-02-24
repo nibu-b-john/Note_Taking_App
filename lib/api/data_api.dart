@@ -12,8 +12,8 @@ class DataApi {
       url,
     );
     final jsonData = jsonDecode(response.body);
-
     List<Data> data = [];
+
     for (var d in jsonData) {
       Data datum =
           Data(id: d['id'], title: d['title'], description: d['description']);

@@ -30,7 +30,7 @@ class DetailsScreen extends StatelessWidget {
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.background,
             border: Border.all(
-                color: Theme.of(context).colorScheme.primary, width: 10)),
+                color: Theme.of(context).colorScheme.primary, width: 2)),
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: SizedBox(
@@ -42,14 +42,14 @@ class DetailsScreen extends StatelessWidget {
               children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
-                  child: const Text(
-                    "Description",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        decoration: TextDecoration.underline),
-                    textAlign: TextAlign.center,
-                  ),
+                  // child: const Text(
+                  //   "Description",
+                  //   style: TextStyle(
+                  //       color: Colors.white,
+                  //       fontSize: 30,
+                  //       decoration: TextDecoration.underline),
+                  //   textAlign: TextAlign.center,
+                  // ),
                 ),
                 const SizedBox(
                   height: 10,

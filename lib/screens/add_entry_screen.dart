@@ -28,12 +28,14 @@ class _AddEntryState extends State<AddEntry> {
       String title, String description) async {
     DateTime now = DateTime.now();
     var dateString = DateFormat('dd-MM-yyyy     hh:mm      EEEE').format(now);
+    //////////////////////////////////////////////////////////////////////////
     var url = Uri.parse('${dotenv.env['YOUR_ENDPOINT_URL']}/postDetails');
     var response = await http.post(url,
         body: jsonEncode(
             {"title": title, "description": description, "date": dateString}),
         headers: {"Content-Type": "application/json"});
     final jsonData = json.decode(response.body);
+    ////////////////////////////////////////////////////////////////////////////
     Data data = Data(
         title: jsonData['data']['title'],
         description: jsonData['data']['description'],
@@ -149,6 +151,7 @@ class _AddEntryState extends State<AddEntry> {
                                         setState(() {
                                           isLoading = true;
                                         }),
+                                        
                                         Navigator.pop(context, callbackMethod)
                                       }
                                   });

@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
       routes: {
         RenderedListWidget.routeName: (context) => const AddEntry(),
         DateTellerWidget.routeName: (context) => const DetailsScreen(),
+        "/homepage": (context) => const HomePage(),
       },
     );
   }

@@ -11,6 +11,7 @@ exports.postDetailsAboutDay = (req, res, next) => {
   const des = req.body.description;
   const submittedDate = req.body.date;
   let dataToSend, dateToSend;
+  //sql
   req.user
     .createDatum({
       title: title,
@@ -35,6 +36,13 @@ exports.variables = (req, res, next) => {
 
 exports.date = (req, res, next) => {
   SubmitedDate.findAll({}).then((date) => res.json(date));
+};
+
+exports.deleteItems = (req, res, next) => {
+  const id = req.body.id;
+  Datum.destroy({ where: { id: id } }).then((_) => {
+    res.json("item deleted");
+  });
 };
 
 exports.deleteItems = (req, res, next) => {

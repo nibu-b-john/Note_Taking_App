@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:personal_diary/models/redendering_data.dart';
 
@@ -16,6 +18,7 @@ class _DateTellerWidgetState extends State<DateTellerWidget> {
   bool showTitle = false;
   @override
   Widget build(BuildContext context) {
+    log(widget.data.toString());
     Data toPassDataInstance = Data(title: '', description: '', id: 1);
 
     for (var datum in widget.data) {

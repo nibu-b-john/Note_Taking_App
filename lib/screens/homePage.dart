@@ -51,8 +51,10 @@ class RenderedListWidget extends StatefulWidget {
 
 class _RenderedListWidgetState extends State<RenderedListWidget> {
   @override
-  @override
   Widget build(BuildContext context) {
+    var dataToDelete;
+    // log(fetchedData.toString());
+    var fetchedData = widget.data;
     Map<String, dynamic> returnedData = {"": 1};
     Data data = Data(id: 1, title: '', description: '');
     Date date = Date(date: '', datumId: 1);
@@ -79,7 +81,7 @@ class _RenderedListWidgetState extends State<RenderedListWidget> {
                             },
                           ),
                           setState(() {
-                            widget.data.add(data);
+                            fetchedData.add(data);
                             widget.date.add(date);
                           })
                         });
@@ -97,52 +99,58 @@ class _RenderedListWidgetState extends State<RenderedListWidget> {
         child: Padding(
             padding: const EdgeInsets.all(8),
             child: ListView.builder(
-                itemCount: widget.data.length,
-                itemBuilder: (context, index) => Column(
-                      children: [
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Dismissible(
-                          confirmDismiss: (DismissDirection direction) async {
-                            return await showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text("Confirm"),
-                                  content: const Text(
-                                      "Are you sure you wish to delete this item?"),
-                                  actions: <Widget>[
-                                    ElevatedButton(
-                                        onPressed: () =>
-                                            Navigator.of(context).pop(true),
-                                        child: const Text("DELETE")),
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.of(context).pop(false),
-                                      child: const Text("CANCEL"),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
-                          key: ValueKey(widget.data[index].id),
-                          direction: DismissDirection.endToStart,
-                          background: Container(
-                            color: Colors.red,
-                            child: const Icon(
-                              Icons.delete,
-                              size: 30,
-                            ),
+                itemCount: fetchedData.length,
+                itemBuilder: (context, index) => GestureDetector(
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 10,
                           ),
-                          onDismissed: (_) {
-                            DeleteItemsApi.deleteItems(widget.data[index].id);
-                          },
-                          child: DateTellerWidget(
-                              dates: widget.date[index], data: widget.data),
-                        )
-                      ],
+                          Dismissible(
+                            confirmDismiss: (DismissDirection direction) async {
+                              return await showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text("Confirm"),
+                                    content: const Text(
+                                        "Are you sure you wish to delete this item?"),
+                                    actions: <Widget>[
+                                      ElevatedButton(
+                                          onPressed: () =>
+                                              Navigator.of(context).pop(true),
+                                          child: const Text("DELETE")),
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.of(context).pop(false),
+                                        child: const Text("CANCEL"),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            key: UniqueKey(),
+                            direction: DismissDirection.endToStart,
+                            background: Container(
+                              color: Colors.red,
+                              child: const Icon(
+                                Icons.delete,
+                                size: 30,
+                              ),
+                            ),
+                            onDismissed: (_) {
+                              DeleteItemsApi.deleteItems(fetchedData[index].id);
+
+                              // setState(() {
+                              //   fetchedData.removeAt(index);
+                              // });
+                            },
+                            child: DateTellerWidget(
+                                dates: widget.date[index], data: fetchedData),
+                          )
+                        ],
+                      ),
                     ))),
       )),
     );
